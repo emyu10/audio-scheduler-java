@@ -40,8 +40,8 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setMaximized(false);
             primaryStage.setTitle(AppConstants.APP_TITLE);
-            ((MainUiController) loader.getController()).initUi();
             primaryStage.show();
+            ((MainUiController) loader.getController()).initUi();
         }
     }
 }

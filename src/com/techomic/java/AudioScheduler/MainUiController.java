@@ -1,6 +1,10 @@
 package com.techomic.java.AudioScheduler;
 
 import com.sun.media.jfxmedia.MediaException;
+import com.techomic.java.AudioScheduler.Playlist.NewPlaylistFormController;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,7 +35,6 @@ public class MainUiController {
     @FXML
     private Button btnNewPlaylist;
 
-    @FXML
     private boolean newPlaylistFormShown = false;
 
     @FXML
@@ -47,7 +50,6 @@ public class MainUiController {
 
     public void play() {
         String audioFile = "file:///home/emyu/Music/Yamaha-V50-E-Piano-1-C4.wav";
-        audioFile = "file:///home/emyu/Music/hiyy_rohva_nulaa.mp3";
         try {
             File file = new File(new URI(audioFile));
             Media m = new Media(file.toURI().toString());
@@ -82,6 +84,7 @@ public class MainUiController {
             try {
                 AnchorPane form = loader.load();
                 mainContent.getChildren().add(form);
+                ((NewPlaylistFormController) loader.getController()).init();
                 newPlaylistFormShown = true;
             } catch (IOException e) {
                 e.printStackTrace();
