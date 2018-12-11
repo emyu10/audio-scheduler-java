@@ -4,9 +4,11 @@ import com.sun.media.jfxmedia.MediaException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -24,15 +26,21 @@ public class MainUiController {
     private Label statusText;
 
     @FXML
-    private Button btnPlay;
+    private AnchorPane mainContent;
+
+    @FXML
+    private Button btnNewPlaylist;
+
+    @FXML
+    private boolean newPlaylistFormShown = false;
 
     @FXML
     public void initUi() {
         statusText.setText("now playing ...");
-        btnPlay.setOnAction(new EventHandler<ActionEvent>() {
+        btnNewPlaylist.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                play();
+                showNewPlaylistForm();
             }
         });
     }
@@ -63,6 +71,21 @@ public class MainUiController {
             alert.setHeaderText(e.getType().toString());
             alert.setContentText(e.getMessage());
             alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void showNewPlaylistForm() {
+        if (!newPlaylistFormShown) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainUiController.class.getResource("Playlist/NewPlaylistForm.fxml"));
+            try {
+                AnchorPane form = loader.load();
+                mainContent.getChildren().add(form);
+                newPlaylistFormShown = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
