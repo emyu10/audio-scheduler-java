@@ -33,12 +33,12 @@ public class Main extends Application {
             e.printStackTrace();
             rootPane = new BorderPane();
             Label label = new Label();
-            label.setText("Could not initialize the application");
+            label.setText(AppConstants.ERROR_APP_INIT_FAILED);
             rootPane.setCenter(label);
         } finally {
             Scene scene = new Scene(rootPane);
             primaryStage.setScene(scene);
-            primaryStage.setMaximized(true);
+            primaryStage.setMaximized(false);
             primaryStage.setTitle(AppConstants.APP_TITLE);
             ((MainUiController) loader.getController()).initUi();
             primaryStage.show();
