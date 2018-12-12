@@ -10,10 +10,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Playlist {
-    private SimpleIntegerProperty playlistId;
-    private SimpleStringProperty playlistName;
-    private SimpleBooleanProperty continuous;
-    private SimpleIntegerProperty createdOn;
+    private SimpleIntegerProperty playlistId = new SimpleIntegerProperty();
+    private SimpleStringProperty playlistName = new SimpleStringProperty();
+    private SimpleBooleanProperty continuous = new SimpleBooleanProperty();
+    private SimpleIntegerProperty createdOn = new SimpleIntegerProperty();
 
     public void setPlaylistId(int playlistId) {
         this.playlistId.set(playlistId);
