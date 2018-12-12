@@ -2,20 +2,23 @@ package com.techomic.java.AudioScheduler;
 
 import com.sun.media.jfxmedia.MediaException;
 import com.techomic.java.AudioScheduler.Playlist.NewPlaylistFormController;
+import com.techomic.java.AudioScheduler.Playlist.Playlist;
+import com.techomic.java.AudioScheduler.Playlist.PlaylistModel;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +41,14 @@ public class MainUiController {
     private boolean newPlaylistFormShown = false;
 
     @FXML
+    private TableView<Playlist> tablePlaylists;
+
+    @FXML
+    private TableColumn<Playlist, String> columnPlaylistName;
+
+    private ObservableList<Playlist> playlists = FXCollections.observableArrayList();
+
+    @FXML
     public void initUi() {
         statusText.setText("now playing ...");
         btnNewPlaylist.setOnAction(new EventHandler<ActionEvent>() {
@@ -46,6 +57,8 @@ public class MainUiController {
                 showNewPlaylistForm();
             }
         });
+        columnPlaylistName.setCellValueFactory(cellData -> cellData.getValue().getPlaylistName());
+        fetchPlaylists();
     }
 
     public void play() {
@@ -84,11 +97,20 @@ public class MainUiController {
             try {
                 AnchorPane form = loader.load();
                 mainContent.getChildren().add(form);
-                ((NewPlaylistFormController) loader.getController()).init();
+                NewPlaylistFormController controller = loader.getController();
+                controller.init();
+                controller.setParentController(this);
                 newPlaylistFormShown = true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    public void fetchPlaylists() {
+        PlaylistModel pm = new PlaylistModel();
+        playlists = pm.getAll();
+        tablePlaylists.setItems(playlists);
     }
 }
