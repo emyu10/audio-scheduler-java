@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -21,6 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.primaryStage.getIcons().add(new Image("file:resources/images/icon.png"));
         initLayout();
     }
 
@@ -38,7 +40,7 @@ public class Main extends Application {
         } finally {
             Scene scene = new Scene(rootPane);
             primaryStage.setScene(scene);
-            primaryStage.setMaximized(false);
+            primaryStage.setMaximized(true);
             primaryStage.setTitle(AppConstants.APP_TITLE);
             primaryStage.show();
             ((MainUiController) loader.getController()).initUi();
