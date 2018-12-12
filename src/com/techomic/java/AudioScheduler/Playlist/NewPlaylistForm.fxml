@@ -11,12 +11,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techomic.java.AudioScheduler.Playlist.NewPlaylistFormController">
+<AnchorPane maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.162-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techomic.java.AudioScheduler.Playlist.NewPlaylistFormController">
    <children>
       <GridPane layoutX="14.0" layoutY="95.0" prefHeight="295.0" prefWidth="580.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="159.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0" minWidth="10.0" prefWidth="421.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="181.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0" minWidth="10.0" prefWidth="399.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -24,16 +24,16 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Playlist Name" GridPane.halignment="RIGHT">
+            <Label styleClass="label-bright" text="Playlist Name" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></Label>
-            <Label text="Continuous Playlist?" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label styleClass="label-bright" text="Continuous Playlist?" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></Label>
-            <TextField maxWidth="300.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" />
-            <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtPlaylistName" maxWidth="300.0" styleClass="text-field" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" />
+            <CheckBox fx:id="chkContinuous" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Button fx:id="btnSavePlaylist" mnemonicParsing="false" text="Save" />
